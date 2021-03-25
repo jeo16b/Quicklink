@@ -17,10 +17,10 @@ public class Users {
 	@SequenceGenerator(name="userSequence", sequenceName="USER_SEQ", allocationSize=1)
 	private int id;
 	
-	@Column(name="F_NAME", nullable=false)
+	@Column(name="F_NAME")
 	private String firstName;
 	
-	@Column(name="L_NAME", nullable=false)
+	@Column(name="L_NAME")
 	private String lastName;
 	
 	@Column(name="U_NAME", nullable=false, unique=true)
@@ -29,24 +29,35 @@ public class Users {
 	@Column(name="P_WORD", nullable=false)
 	private String password;
 	
-	@Column(name="EMAIL", nullable=false, unique=true)
+	@Column(name="EMAIL", unique=true)
 	private String email;
 	
-	@Column(name="P_NUMBER", nullable=false, unique=true)
+	@Column(name="P_NUMBER", unique=true)
 	private int phoneNumber;
 	
-	@Column(name="ADDRESS", nullable=false)
+	@Column(name="ADDRESS")
 	private String address;
 	
-	@Column(name="ROLE_ID", nullable=false)
-	private int roleId;
+	@Column(name="R_NAME", nullable=false)
+	private String role;
 
 	public Users() {
 		super();
 	}
+	
+	
+
+	public Users(String username, String password, String role) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.role = role;
+	}
+
+
 
 	public Users(String firstName, String lastName, String username, String password, String email, int phoneNumber,
-			String address, int roleId) {
+			String address, String role) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -55,11 +66,11 @@ public class Users {
 		this.email = email;
 		this.phoneNumber = phoneNumber;
 		this.address = address;
-		this.roleId = roleId;
+		this.role = role;
 	}
 
 	public Users(int id, String firstName, String lastName, String username, String password, String email,
-			int phoneNumber, String address, int roleId) {
+			int phoneNumber, String address, String role) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -69,7 +80,7 @@ public class Users {
 		this.email = email;
 		this.phoneNumber = phoneNumber;
 		this.address = address;
-		this.roleId = roleId;
+		this.role = role;
 	}
 
 	public int getId() {
@@ -136,13 +147,14 @@ public class Users {
 		this.address = address;
 	}
 
-	public int getRoleId() {
-		return roleId;
+	public String getrole() {
+		return role;
 	}
 
-	public void setRoleId(int roleId) {
-		this.roleId = roleId;
+	public void setrole(String role) {
+		this.role = role;
 	}
+
 
 	@Override
 	public int hashCode() {
@@ -155,10 +167,12 @@ public class Users {
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + phoneNumber;
-		result = prime * result + roleId;
+		result = prime * result + ((role == null) ? 0 : role.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -198,7 +212,10 @@ public class Users {
 			return false;
 		if (phoneNumber != other.phoneNumber)
 			return false;
-		if (roleId != other.roleId)
+		if (role == null) {
+			if (other.role != null)
+				return false;
+		} else if (!role.equals(other.role))
 			return false;
 		if (username == null) {
 			if (other.username != null)
@@ -208,11 +225,13 @@ public class Users {
 		return true;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "Users [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
 				+ ", password=" + password + ", email=" + email + ", phoneNumber=" + phoneNumber + ", address="
-				+ address + ", roleId=" + roleId + "]";
+				+ address + ", role=" + role + "]";
 	}
 	
 	
