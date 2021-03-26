@@ -1,5 +1,7 @@
 package com.project2.models;
 
+import java.util.Objects;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,13 +13,25 @@ public class Posts {
 	@SequenceGenerator(name="postSequence", sequenceName="POST_SEQ", allocationSize=1)
 	private int postId;
 	
-	@Column(name="CITY", nullable=false)
-	private String city;
+	@Column(name="companyName", nullable=false)
+	private String companyName;
 	
-	@Column(name="STATE", nullable=false)
-	private String state;
+	@Column(name="TITLE", nullable=false)
+	private String title;
 	
-	@Column(name="DESCRIPTION")
+	@Column(name="CATEGORY", nullable=false)
+	private String category;
+	
+	@Column(name="LOCATION", nullable=false)
+	private String location;
+	
+	@Column(name="SALARY", nullable=false)
+	private double salary;
+	
+	@Column(name="PHONENUMBER", nullable=false)
+	private int phoneNumber;	
+	
+	@Column(name="DESCRIPTION", nullable=false)
 	private String description;
 	
 	@Column(name="EMPLOYER_ID", nullable=false)
@@ -26,214 +40,214 @@ public class Posts {
 	@Column(name="EMPLOYEE_ID")
 	private int employeeId;
 	
-	@Column(name="CATEGORY", nullable=false)
-	private String category;
-	
-	@Column(name="SALARY", nullable=false)
-	private double salary;
-	
-	@Column(name="TITLE", nullable=false)
-	private String title;
-
-	public Posts() {
+	public Posts() 
+	{
 		super();
 	}
 
-	public Posts(String city, String state, String description, int employerId, int employeeId, String category,
-			double salary, String title) {
+	/**
+	 * @param companyName
+	 * @param title
+	 * @param category
+	 * @param location
+	 * @param salary
+	 * @param phoneNumber
+	 * @param description
+	 * @param employerId
+	 * @param employeeId
+	 */
+	public Posts(String companyName, String title, String category, String location, double salary, int phoneNumber,
+			String description, int employerId, int employeeId)
+	{
 		super();
-		this.city = city;
-		this.state = state;
+		this.companyName = companyName;
+		this.title = title;
+		this.category = category;
+		this.location = location;
+		this.salary = salary;
+		this.phoneNumber = phoneNumber;
 		this.description = description;
 		this.employerId = employerId;
 		this.employeeId = employeeId;
-		this.category = category;
-		this.salary = salary;
-		this.title = title;
 	}
 
-	public Posts(String city, String state, String description, int employerId, String category, double salary,
-			String title) {
-		super();
-		this.city = city;
-		this.state = state;
-		this.description = description;
-		this.employerId = employerId;
-		this.category = category;
-		this.salary = salary;
-		this.title = title;
-	}
-
-	public Posts(int postId, String city, String state, String description, int employerId, int employeeId,
-			String category, double salary, String title) {
+	/**
+	 * @param postId
+	 * @param companyName
+	 * @param title
+	 * @param category
+	 * @param location
+	 * @param salary
+	 * @param phoneNumber
+	 * @param description
+	 * @param employerId
+	 * @param employeeId
+	 */
+	public Posts(int postId, String companyName, String title, String category, String location, double salary,
+			int phoneNumber, String description, int employerId, int employeeId)
+	{
 		super();
 		this.postId = postId;
-		this.city = city;
-		this.state = state;
+		this.companyName = companyName;
+		this.title = title;
+		this.category = category;
+		this.location = location;
+		this.salary = salary;
+		this.phoneNumber = phoneNumber;
 		this.description = description;
 		this.employerId = employerId;
 		this.employeeId = employeeId;
-		this.category = category;
-		this.salary = salary;
-		this.title = title;
 	}
 
-	public Posts(int postId, String city, String state, String description, int employerId, String category,
-			double salary, String title) {
-		super();
-		this.postId = postId;
-		this.city = city;
-		this.state = state;
-		this.description = description;
-		this.employerId = employerId;
-		this.category = category;
-		this.salary = salary;
-		this.title = title;
-	}
+	/**
+	 * @return the postId
+	 */
+	public int getPostId()
+	{ return postId; }
 
-	public int getPostId() {
-		return postId;
-	}
+	/**
+	 * @param postId the postId to set
+	 */
+	public void setPostId(int postId)
+	{ this.postId = postId; }
 
-	public void setPostId(int postId) {
-		this.postId = postId;
-	}
+	/**
+	 * @return the companyName
+	 */
+	public String getCompanyName()
+	{ return companyName; }
 
-	public String getCity() {
-		return city;
-	}
+	/**
+	 * @param companyName the companyName to set
+	 */
+	public void setCompanyName(String companyName)
+	{ this.companyName = companyName; }
 
-	public void setCity(String city) {
-		this.city = city;
-	}
+	/**
+	 * @return the title
+	 */
+	public String getTitle()
+	{ return title; }
 
-	public String getState() {
-		return state;
-	}
+	/**
+	 * @param title the title to set
+	 */
+	public void setTitle(String title)
+	{ this.title = title; }
 
-	public void setState(String state) {
-		this.state = state;
-	}
+	/**
+	 * @return the category
+	 */
+	public String getCategory()
+	{ return category; }
 
-	public String getDescription() {
-		return description;
-	}
+	/**
+	 * @param category the category to set
+	 */
+	public void setCategory(String category)
+	{ this.category = category; }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+	/**
+	 * @return the location
+	 */
+	public String getLocation()
+	{ return location; }
 
-	public int getEmployerId() {
-		return employerId;
-	}
+	/**
+	 * @param location the location to set
+	 */
+	public void setLocation(String location)
+	{ this.location = location; }
 
-	public void setEmployerId(int employerId) {
-		this.employerId = employerId;
-	}
+	/**
+	 * @return the salary
+	 */
+	public double getSalary()
+	{ return salary; }
 
-	public int getEmployeeId() {
-		return employeeId;
-	}
+	/**
+	 * @param salary the salary to set
+	 */
+	public void setSalary(double salary)
+	{ this.salary = salary; }
 
-	public void setEmployeeId(int employeeId) {
-		this.employeeId = employeeId;
-	}
+	/**
+	 * @return the phoneNumber
+	 */
+	public int getPhoneNumber()
+	{ return phoneNumber; }
 
-	public String getCategory() {
-		return category;
-	}
+	/**
+	 * @param phoneNumber the phoneNumber to set
+	 */
+	public void setPhoneNumber(int phoneNumber)
+	{ this.phoneNumber = phoneNumber; }
 
-	public void setCategory(String category) {
-		this.category = category;
-	}
+	/**
+	 * @return the description
+	 */
+	public String getDescription()
+	{ return description; }
 
-	public double getSalary() {
-		return salary;
-	}
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String description)
+	{ this.description = description; }
 
-	public void setSalary(double salary) {
-		this.salary = salary;
-	}
+	/**
+	 * @return the employerId
+	 */
+	public int getEmployerId()
+	{ return employerId; }
 
-	public String getTitle() {
-		return title;
-	}
+	/**
+	 * @param employerId the employerId to set
+	 */
+	public void setEmployerId(int employerId)
+	{ this.employerId = employerId; }
 
-	public void setTitle(String title) {
-		this.title = title;
+	/**
+	 * @return the employeeId
+	 */
+	public int getEmployeeId()
+	{ return employeeId; }
+
+	/**
+	 * @param employeeId the employeeId to set
+	 */
+	public void setEmployeeId(int employeeId)
+	{ this.employeeId = employeeId; }
+
+	@Override
+	public int hashCode()
+	{
+		return Objects.hash(category, companyName, description, employeeId, employerId, location, phoneNumber, postId,
+				salary, title);
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((category == null) ? 0 : category.hashCode());
-		result = prime * result + ((city == null) ? 0 : city.hashCode());
-		result = prime * result + ((description == null) ? 0 : description.hashCode());
-		result = prime * result + employeeId;
-		result = prime * result + employerId;
-		result = prime * result + postId;
-		long temp;
-		temp = Double.doubleToLongBits(salary);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((state == null) ? 0 : state.hashCode());
-		result = prime * result + ((title == null) ? 0 : title.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(Object obj)
+	{
 		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
+		{ return true; }
+		if (!(obj instanceof Posts))
+		{ return false; }
 		Posts other = (Posts) obj;
-		if (category == null) {
-			if (other.category != null)
-				return false;
-		} else if (!category.equals(other.category))
-			return false;
-		if (city == null) {
-			if (other.city != null)
-				return false;
-		} else if (!city.equals(other.city))
-			return false;
-		if (description == null) {
-			if (other.description != null)
-				return false;
-		} else if (!description.equals(other.description))
-			return false;
-		if (employeeId != other.employeeId)
-			return false;
-		if (employerId != other.employerId)
-			return false;
-		if (postId != other.postId)
-			return false;
-		if (Double.doubleToLongBits(salary) != Double.doubleToLongBits(other.salary))
-			return false;
-		if (state == null) {
-			if (other.state != null)
-				return false;
-		} else if (!state.equals(other.state))
-			return false;
-		if (title == null) {
-			if (other.title != null)
-				return false;
-		} else if (!title.equals(other.title))
-			return false;
-		return true;
+		return Objects.equals(category, other.category) && Objects.equals(companyName, other.companyName)
+				&& Objects.equals(description, other.description) && employeeId == other.employeeId
+				&& employerId == other.employerId && Objects.equals(location, other.location)
+				&& phoneNumber == other.phoneNumber && postId == other.postId
+				&& Double.doubleToLongBits(salary) == Double.doubleToLongBits(other.salary)
+				&& Objects.equals(title, other.title);
 	}
 
 	@Override
-	public String toString() {
-		return "Posts [postId=" + postId + ", city=" + city + ", state=" + state + ", description=" + description
-				+ ", employerId=" + employerId + ", employeeId=" + employeeId + ", category=" + category + ", salary="
-				+ salary + ", title=" + title + "]";
+	public String toString()
+	{
+		return "Posts [postId=" + postId + ", companyName=" + companyName + ", title=" + title + ", category="
+				+ category + ", location=" + location + ", salary=" + salary + ", phoneNumber=" + phoneNumber
+				+ ", description=" + description + ", employerId=" + employerId + ", employeeId=" + employeeId + "]";
 	}
 	
-	
-	
-
 }
