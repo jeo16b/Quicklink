@@ -14,5 +14,7 @@ public interface UserService {
 	public List<Users> getAllUsers();
 	
 	public List<Posts> getPostApplied(Users u);
+	
+	public boolean updateUser(Users u);
 
 }

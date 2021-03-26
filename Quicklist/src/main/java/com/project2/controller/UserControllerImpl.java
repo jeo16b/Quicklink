@@ -59,4 +59,9 @@ public class UserControllerImpl implements UserController{
 		return userService.getPostApplied(u);
 	}
 
+	@PostMapping("/updateUserInfo")
+	public @ResponseBody boolean updateUser(@RequestBody Users u) {	
+		return userService.updateUser(u);
+	}
+
 }

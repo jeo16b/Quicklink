@@ -16,6 +16,8 @@ public interface UserRepository {
 	
 	List<Posts> findPostApplied(Users u);
 	
+	boolean updateUser(Users u);
+	
 	
 
 }

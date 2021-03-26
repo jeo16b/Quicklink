@@ -14,5 +14,7 @@ public interface UserController {
 	Users findUser(Users u, HttpServletRequest req);
 	
 	List<Users> findAllUsers();
+	
+	boolean updateUser(Users u);
 
 }

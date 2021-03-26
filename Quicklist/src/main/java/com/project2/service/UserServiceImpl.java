@@ -45,4 +45,10 @@ public class UserServiceImpl implements UserService{
 		return userRepository.findPostApplied(u);
 	}
 
+	@Override
+	public boolean updateUser(Users u) {
+		
+		return userRepository.updateUser(u);
+	}
+
 }

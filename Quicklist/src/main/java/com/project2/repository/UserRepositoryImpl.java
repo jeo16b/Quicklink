@@ -4,6 +4,8 @@ package com.project2.repository;
 
 import java.util.List;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -57,6 +59,22 @@ public class UserRepositoryImpl implements UserRepository {
 	public List<Posts> findPostApplied(Users u) {
 		return (List<Posts>) sessionFactory.getCurrentSession().createCriteria(Posts.class)
 				.add(Restrictions.like("employeeId", u.getId()));
+	}
+
+	@Override
+	public boolean updateUser(Users u) {
+		try {
+			sessionFactory.getCurrentSession().update(u);
+		}catch(EntityNotFoundException e)
+		{
+			log.error("User not found!");
+			log.error(e.getMessage());
+			return false;
+		}
+		
+		log.trace("User Updated!");
+		return true;
+		
 	}
 
 
