@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.project2.models.Posts;
 import com.project2.models.Users;
 
 @Repository("userRepository")
@@ -49,6 +50,13 @@ public class UserRepositoryImpl implements UserRepository {
 	@Override
 	public List<Users> findAll() {
 		return sessionFactory.getCurrentSession().createCriteria(Users.class).list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Posts> findPostApplied(Users u) {
+		return (List<Posts>) sessionFactory.getCurrentSession().createCriteria(Posts.class)
+				.add(Restrictions.like("employeeId", u.getId()));
 	}
 
 

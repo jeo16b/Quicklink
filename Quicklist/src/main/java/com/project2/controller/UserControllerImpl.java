@@ -14,6 +14,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import com.project2.ajax.ClientMessage;
+import com.project2.models.Posts;
 import com.project2.models.Users;
 import com.project2.service.UserService;
 
@@ -50,6 +51,12 @@ public class UserControllerImpl implements UserController{
 	@GetMapping("/findAllUsers")
 	public @ResponseBody List<Users> findAllUsers() {
 		return userService.getAllUsers();
+	}
+	
+	@PostMapping("/findPostApplied")
+	public @ResponseBody List<Posts> findPostApplied(@RequestBody Users u, HttpServletRequest req){
+		req.getSession();
+		return userService.getPostApplied(u);
 	}
 
 }

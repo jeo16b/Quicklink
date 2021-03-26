@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project2.models.Posts;
 import com.project2.models.Users;
 import com.project2.repository.UserRepository;
 
@@ -37,6 +38,11 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public List<Users> getAllUsers() {
 		return userRepository.findAll();
+	}
+
+	@Override
+	public List<Posts> getPostApplied(Users u) {
+		return userRepository.findPostApplied(u);
 	}
 
 }
