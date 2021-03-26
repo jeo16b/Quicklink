@@ -55,6 +55,15 @@ public class Users {
 	}
 
 
+	public Users(int id, String username, String password, String role) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.role = role;
+	}
+
+
 
 	public Users(String firstName, String lastName, String username, String password, String email, int phoneNumber,
 			String address, String role) {
