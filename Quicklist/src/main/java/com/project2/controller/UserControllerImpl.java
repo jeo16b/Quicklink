@@ -2,16 +2,23 @@ package com.project2.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
+//import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import static com.project2.util.ClientMessageUtil.*;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import com.project2.ajax.ClientMessage;
 import com.project2.models.Users;
 import com.project2.service.UserService;
 
 @Controller("userController")
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 public class UserControllerImpl implements UserController{
 	
 	@Autowired
@@ -28,8 +35,21 @@ public class UserControllerImpl implements UserController{
 	
 	
 	@PostMapping("/register") // localhost:8080/Quicklist/register
-	public @ResponseBody boolean registerUser(@RequestBody Users u) {
-		return (userService.registerUser(u));
+	public @ResponseBody ClientMessage registerUser(@RequestBody Users u) {
+		
+		return (userService.registerUser(u)) ? REGISTRATION_SUCCESSFUL : SOMETHING_WRONG;
+		
+	}
+
+	@GetMapping("/findUser")
+	public @ResponseBody Users findUser(@RequestBody Users u, HttpServletRequest req) {
+		req.getSession();
+		return userService.getUser(u.getId());
+	}
+
+	@GetMapping("/findAllUsers")
+	public @ResponseBody List<Users> findAllUsers() {
+		return userService.getAllUsers();
 	}
 
 }
