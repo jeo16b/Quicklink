@@ -68,9 +68,9 @@ public class UserControllerImpl implements UserController{
 	}
 	
 	@PostMapping("/login")
-	public @ResponseBody ClientMessage login(@RequestBody String userName, @RequestBody String password)
+	public @ResponseBody Users login(@RequestBody Users u)
 	{
-		return (userService.login(userName, password)) != null? ClientMessageUtil.LOGIN_SUCCESSFUL:ClientMessageUtil.LOGIN_ERROR;
+		return userService.login(u);
 	}
 
 	@PostMapping("/findUser")

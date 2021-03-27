@@ -18,7 +18,7 @@ public interface UserRepository {
 	
 	boolean updateUser(Users u);
 
-	Users login(String userName, String password);
-
 	Users findByName(String userName);
+
+	Users login(Users u);
 }

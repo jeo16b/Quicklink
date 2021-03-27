@@ -17,6 +17,6 @@ public interface UserService {
 	
 	public boolean updateUser(Users u);
 
-	Users login(String username, String password);
+	Users login(Users u);
 
 }

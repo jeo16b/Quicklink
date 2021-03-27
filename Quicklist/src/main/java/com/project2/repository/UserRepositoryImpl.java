@@ -38,13 +38,13 @@ public class UserRepositoryImpl implements UserRepository {
 	}
 	
 	@Override
-	public Users login(String userName, String password)
+	public Users login(Users u)
 	{
-		Users user = findByName(userName);
+		Users user = findByName(u.getUsername());
 		
 		if(user != null)
 		{
-			if(user.getPassword() == password)
+			if(user.getPassword() == u.getPassword())
 			{
 				log.trace("Login Successful");
 				return user;
@@ -91,7 +91,7 @@ public class UserRepositoryImpl implements UserRepository {
 	@Override
 	public List<Posts> findPostApplied(Users u) {
 		return (List<Posts>) sessionFactory.getCurrentSession().createCriteria(Posts.class)
-				.add(Restrictions.like("employeeId", u.getId()));
+				.add(Restrictions.like("employeeId", u.getId())).list();
 	}
 
 	@Override
