@@ -33,8 +33,41 @@ public class UserRepositoryImpl implements UserRepository {
 	public void register(Users u) {
 		
 		sessionFactory.getCurrentSession().save(u);
+
 		
+	}
+	
+	@Override
+	public Users login(String userName, String password)
+	{
+		Users user = findByName(userName);
 		
+		if(user != null)
+		{
+			if(user.getPassword() == password)
+			{
+				log.trace("Login Successful");
+				return user;
+			}
+			log.error("Password Error");
+			return null;
+		}
+		log.error("Username not found");
+		return null;
+	}
+	
+	@Override
+	public Users findByName(String name)
+	{
+		try
+		{
+			return (Users) sessionFactory.getCurrentSession().createCriteria(Users.class).add(Restrictions.like("username", name)).list().get(0);
+		}
+		catch(IndexOutOfBoundsException e)
+		{
+			log.debug(e.getMessage());
+			return null;
+		}
 	}
 
 	@Override

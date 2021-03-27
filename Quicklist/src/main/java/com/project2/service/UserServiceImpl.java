@@ -39,10 +39,16 @@ public class UserServiceImpl implements UserService{
 	public List<Users> getAllUsers() {
 		return userRepository.findAll();
 	}
-
+	
 	@Override
 	public List<Posts> getPostApplied(Users u) {
 		return userRepository.findPostApplied(u);
+	}
+	
+	@Override
+	public Users login(String username, String password)
+	{
+		return (userRepository.login(username, password));		
 	}
 
 	@Override

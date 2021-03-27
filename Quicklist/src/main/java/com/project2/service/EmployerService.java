@@ -14,7 +14,7 @@ import com.project2.models.Posts;
 public interface EmployerService
 {
 	public boolean registerMyPost(Posts post);
-	public void deleteMyPost(Posts post);
+	public boolean deleteMyPost(Posts post);
 	public boolean updateMyPost(Posts post);
 	public List<Posts> findAllMyPosts();
 }

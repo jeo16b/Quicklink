@@ -32,12 +32,58 @@ public class PostRepositoryImpl implements PostRepository
 		log.error("Error making post");
 		return false;
 	}
+	
+	
+	@Override
+	public Posts findPostsById(int id)
+	{
+		List<Posts> posts = getAllPosts();
+				
+		log.trace("Finding posts with ID: " + id);
+		
+		if(!posts.isEmpty())
+		{
+			for(Posts p : posts)
+			{
+				if(p.getPostId() == id)
+				{
+					log.trace("Posts found");
+					return p;
+				}
+			}
+			
+			log.error("No posts found with ID: " + id);
+			return null;
+		}
+		
+		log.error("No posts found");
+		return null;
+	}
 
 	@Override
-	public void deletePost(Posts post)
+	public boolean deletePost(Posts post)
 	{	
-		sessionFactory.getCurrentSession().delete(post);
-		log.trace("Post Deleted");
+		//Finding the requested post
+		Posts myPost = findPostsById(post.getPostId());
+		
+		//if that post actually exists
+		if(myPost!=null)
+		{
+			//attempt to delete the post
+			sessionFactory.getCurrentSession().delete(post);
+			
+			//Checking to make sure it actually got deleted
+			myPost = findPostsById(post.getPostId());
+			
+			if(myPost == null)
+			{
+				log.trace("Post Deleted");
+				return true;
+			}
+		}
+		
+		log.error("Error Deleting Post");
+		return false;
 	}
 
 	@Override
