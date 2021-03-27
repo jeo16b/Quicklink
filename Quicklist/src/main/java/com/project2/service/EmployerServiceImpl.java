@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.project2.models.Posts;
 import com.project2.repository.PostRepository;
-import com.project2.repository.UserRepository;
 
 /**
  * @author bak12
@@ -22,9 +21,6 @@ public class EmployerServiceImpl implements EmployerService
 	@Autowired
 	private PostRepository postRepo;
 	
-	@Autowired
-	private UserRepository userRepo;
-
 	@Override
 	public boolean registerMyPost(Posts post)
 	{
@@ -32,9 +28,9 @@ public class EmployerServiceImpl implements EmployerService
 	}
 
 	@Override
-	public void deleteMyPost(Posts post)
+	public boolean deleteMyPost(Posts post)
 	{
-		postRepo.deletePost(post);
+		return postRepo.deletePost(post);
 		
 	}
 

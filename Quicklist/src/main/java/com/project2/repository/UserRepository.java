@@ -17,7 +17,8 @@ public interface UserRepository {
 	List<Posts> findPostApplied(Users u);
 	
 	boolean updateUser(Users u);
-	
-	
 
+	Users login(String userName, String password);
+
+	Users findByName(String userName);
 }
