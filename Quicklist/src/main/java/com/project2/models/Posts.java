@@ -29,7 +29,7 @@ public class Posts {
 	private double salary;
 	
 	@Column(name="PHONENUMBER", nullable=false)
-	private long phoneNumber;	
+	private String phoneNumber;	
 	
 	@Column(name="DESCRIPTION", nullable=false)
 	private String description;
@@ -56,7 +56,7 @@ public class Posts {
 	 * @param employerId
 	 * @param employeeId
 	 */
-	public Posts(String companyName, String title, String category, String location, double salary, int phoneNumber,
+	public Posts(String companyName, String title, String category, String location, double salary, String phoneNumber,
 			String description, int employerId, int employeeId)
 	{
 		super();
@@ -84,7 +84,7 @@ public class Posts {
 	 * @param employeeId
 	 */
 	public Posts(int postId, String companyName, String title, String category, String location, double salary,
-			long phoneNumber, String description, int employerId, int employeeId)
+			String phoneNumber, String description, int employerId, int employeeId)
 	{
 		super();
 		this.postId = postId;
@@ -174,13 +174,13 @@ public class Posts {
 	/**
 	 * @return the phoneNumber
 	 */
-	public long getPhoneNumber()
+	public String getPhoneNumber()
 	{ return phoneNumber; }
 
 	/**
 	 * @param phoneNumber the phoneNumber to set
 	 */
-	public void setPhoneNumber(int phoneNumber)
+	public void setPhoneNumber(String phoneNumber)
 	{ this.phoneNumber = phoneNumber; }
 
 	/**
@@ -229,7 +229,7 @@ public class Posts {
 		result = prime * result + employeeId;
 		result = prime * result + employerId;
 		result = prime * result + ((location == null) ? 0 : location.hashCode());
-		result = prime * result + (int) (phoneNumber ^ (phoneNumber >>> 32));
+		result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
 		result = prime * result + postId;
 		long temp;
 		temp = Double.doubleToLongBits(salary);
@@ -271,7 +271,10 @@ public class Posts {
 				return false;
 		} else if (!location.equals(other.location))
 			return false;
-		if (phoneNumber != other.phoneNumber)
+		if (phoneNumber == null) {
+			if (other.phoneNumber != null)
+				return false;
+		} else if (!phoneNumber.equals(other.phoneNumber))
 			return false;
 		if (postId != other.postId)
 			return false;
@@ -291,6 +294,10 @@ public class Posts {
 				+ category + ", location=" + location + ", salary=" + salary + ", phoneNumber=" + phoneNumber
 				+ ", description=" + description + ", employerId=" + employerId + ", employeeId=" + employeeId + "]";
 	}
+
+
+	
+
 
 	
 }
