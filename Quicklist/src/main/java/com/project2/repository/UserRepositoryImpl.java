@@ -44,7 +44,7 @@ public class UserRepositoryImpl implements UserRepository {
 		
 		if(user != null)
 		{
-			if(user.getPassword() == u.getPassword())
+			if(user.getPassword().equals(u.getPassword()))
 			{
 				log.trace("Login Successful");
 				return user;
