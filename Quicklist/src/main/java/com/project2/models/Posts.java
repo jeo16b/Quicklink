@@ -29,7 +29,7 @@ public class Posts {
 	private double salary;
 	
 	@Column(name="PHONENUMBER", nullable=false)
-	private int phoneNumber;	
+	private long phoneNumber;	
 	
 	@Column(name="DESCRIPTION", nullable=false)
 	private String description;
@@ -84,7 +84,7 @@ public class Posts {
 	 * @param employeeId
 	 */
 	public Posts(int postId, String companyName, String title, String category, String location, double salary,
-			int phoneNumber, String description, int employerId, int employeeId)
+			long phoneNumber, String description, int employerId, int employeeId)
 	{
 		super();
 		this.postId = postId;
@@ -174,7 +174,7 @@ public class Posts {
 	/**
 	 * @return the phoneNumber
 	 */
-	public int getPhoneNumber()
+	public long getPhoneNumber()
 	{ return phoneNumber; }
 
 	/**
@@ -220,34 +220,77 @@ public class Posts {
 	{ this.employeeId = employeeId; }
 
 	@Override
-	public int hashCode()
-	{
-		return Objects.hash(category, companyName, description, employeeId, employerId, location, phoneNumber, postId,
-				salary, title);
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((category == null) ? 0 : category.hashCode());
+		result = prime * result + ((companyName == null) ? 0 : companyName.hashCode());
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + employeeId;
+		result = prime * result + employerId;
+		result = prime * result + ((location == null) ? 0 : location.hashCode());
+		result = prime * result + (int) (phoneNumber ^ (phoneNumber >>> 32));
+		result = prime * result + postId;
+		long temp;
+		temp = Double.doubleToLongBits(salary);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		return result;
 	}
 
 	@Override
-	public boolean equals(Object obj)
-	{
+	public boolean equals(Object obj) {
 		if (this == obj)
-		{ return true; }
-		if (!(obj instanceof Posts))
-		{ return false; }
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
 		Posts other = (Posts) obj;
-		return Objects.equals(category, other.category) && Objects.equals(companyName, other.companyName)
-				&& Objects.equals(description, other.description) && employeeId == other.employeeId
-				&& employerId == other.employerId && Objects.equals(location, other.location)
-				&& phoneNumber == other.phoneNumber && postId == other.postId
-				&& Double.doubleToLongBits(salary) == Double.doubleToLongBits(other.salary)
-				&& Objects.equals(title, other.title);
+		if (category == null) {
+			if (other.category != null)
+				return false;
+		} else if (!category.equals(other.category))
+			return false;
+		if (companyName == null) {
+			if (other.companyName != null)
+				return false;
+		} else if (!companyName.equals(other.companyName))
+			return false;
+		if (description == null) {
+			if (other.description != null)
+				return false;
+		} else if (!description.equals(other.description))
+			return false;
+		if (employeeId != other.employeeId)
+			return false;
+		if (employerId != other.employerId)
+			return false;
+		if (location == null) {
+			if (other.location != null)
+				return false;
+		} else if (!location.equals(other.location))
+			return false;
+		if (phoneNumber != other.phoneNumber)
+			return false;
+		if (postId != other.postId)
+			return false;
+		if (Double.doubleToLongBits(salary) != Double.doubleToLongBits(other.salary))
+			return false;
+		if (title == null) {
+			if (other.title != null)
+				return false;
+		} else if (!title.equals(other.title))
+			return false;
+		return true;
 	}
 
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		return "Posts [postId=" + postId + ", companyName=" + companyName + ", title=" + title + ", category="
 				+ category + ", location=" + location + ", salary=" + salary + ", phoneNumber=" + phoneNumber
 				+ ", description=" + description + ", employerId=" + employerId + ", employeeId=" + employeeId + "]";
 	}
+
 	
 }
