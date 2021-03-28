@@ -21,4 +21,6 @@ public interface UserRepository {
 	Users findByName(String userName);
 
 	Users login(Users u);
+	
+	List<Posts> getAllPosts();
 }

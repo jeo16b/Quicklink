@@ -57,4 +57,9 @@ public class UserServiceImpl implements UserService{
 		return userRepository.updateUser(u);
 	}
 
+	@Override
+	public List<Posts> getAllPost() {
+		return userRepository.getAllPosts();
+	}
+
 }

@@ -110,6 +110,12 @@ public class UserRepositoryImpl implements UserRepository {
 		
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Posts> getAllPosts() {
+		return sessionFactory.getCurrentSession().createCriteria(Posts.class).list();
+	}
+
 
 
 }

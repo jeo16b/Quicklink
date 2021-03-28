@@ -95,4 +95,9 @@ public class UserControllerImpl implements UserController{
 		return userService.updateUser(u);
 	}
 
+	@GetMapping("/allPosts")
+	public @ResponseBody List<Posts> getAllPosts() {
+		return userService.getAllPost();
+	}
+
 }

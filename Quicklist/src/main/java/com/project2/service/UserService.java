@@ -18,5 +18,6 @@ public interface UserService {
 	public boolean updateUser(Users u);
 
 	Users login(Users u);
+	List<Posts> getAllPost();
 
 }

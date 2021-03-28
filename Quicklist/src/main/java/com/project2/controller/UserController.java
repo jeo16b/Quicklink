@@ -25,6 +25,8 @@ public interface UserController {
 	ClientMessage deletePost(Posts post);
 	
 	Users login(Users u);
+
+	List<Posts> getAllPosts();
 	
 
 }
