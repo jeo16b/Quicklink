@@ -17,4 +17,5 @@ public interface EmployerService
 	public boolean deleteMyPost(Posts post);
 	public boolean updateMyPost(Posts post);
 	public List<Posts> findAllMyPosts();
+	public Posts findPostById(int id);
 }

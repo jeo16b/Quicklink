@@ -62,4 +62,9 @@ public class UserServiceImpl implements UserService{
 		return userRepository.getAllPosts();
 	}
 
+	@Override
+	public Users findByName(String username) {
+		return userRepository.findByName(username);
+	}
+
 }

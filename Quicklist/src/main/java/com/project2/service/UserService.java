@@ -16,6 +16,8 @@ public interface UserService {
 	public List<Posts> getPostApplied(Users u);
 	
 	public boolean updateUser(Users u);
+	
+	public Users findByName(String username);
 
 	Users login(Users u);
 	List<Posts> getAllPost();

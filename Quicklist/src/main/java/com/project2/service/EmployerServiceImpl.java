@@ -46,6 +46,11 @@ public class EmployerServiceImpl implements EmployerService
 	{
 		return postRepo.getAllPosts();
 	}
+
+	@Override
+	public Posts findPostById(int id) {
+		return postRepo.findPostsById(id);
+	}
 	
 	
 }
