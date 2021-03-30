@@ -23,22 +23,22 @@ public class Users {
 	@Column(name="L_NAME")
 	private String lastName;
 	
-	@Column(name="U_NAME", nullable=false, unique=true)
+	@Column(name="U_NAME", unique=true)
 	private String username;
 	
-	@Column(name="P_WORD", nullable=false)
+	@Column(name="P_WORD")
 	private String password;
 	
 	@Column(name="EMAIL", unique=true)
 	private String email;
 	
 	@Column(name="P_NUMBER")
-	private int phoneNumber;
+	private String phoneNumber;
 	
 	@Column(name="ADDRESS")
 	private String address;
 	
-	@Column(name="R_NAME", nullable=false)
+	@Column(name="R_NAME")
 	private String role;
 
 	public Users() {
@@ -55,17 +55,8 @@ public class Users {
 	}
 
 
-	public Users(int id, String username, String password, String role) {
-		super();
-		this.id = id;
-		this.username = username;
-		this.password = password;
-		this.role = role;
-	}
 
-
-
-	public Users(String firstName, String lastName, String username, String password, String email, int phoneNumber,
+	public Users(String firstName, String lastName, String username, String password, String email, String phoneNumber,
 			String address, String role) {
 		super();
 		this.firstName = firstName;
@@ -78,8 +69,10 @@ public class Users {
 		this.role = role;
 	}
 
+
+
 	public Users(int id, String firstName, String lastName, String username, String password, String email,
-			int phoneNumber, String address, String role) {
+			String phoneNumber, String address, String role) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -92,77 +85,114 @@ public class Users {
 		this.role = role;
 	}
 
+
+
 	public int getId() {
 		return id;
 	}
+
+
 
 	public void setId(int id) {
 		this.id = id;
 	}
 
+
+
 	public String getFirstName() {
 		return firstName;
 	}
+
+
 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
+
+
 	public String getLastName() {
 		return lastName;
 	}
+
+
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 
+
+
 	public String getUsername() {
 		return username;
 	}
+
+
 
 	public void setUsername(String username) {
 		this.username = username;
 	}
 
+
+
 	public String getPassword() {
 		return password;
 	}
+
+
 
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
+
+
 	public String getEmail() {
 		return email;
 	}
+
+
 
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	public int getPhoneNumber() {
+
+
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(int phoneNumber) {
+
+
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
+
+
 
 	public String getAddress() {
 		return address;
 	}
 
+
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
 
-	public String getrole() {
+
+
+	public String getRole() {
 		return role;
 	}
 
-	public void setrole(String role) {
+
+
+	public void setRole(String role) {
 		this.role = role;
 	}
+
 
 
 	@Override
@@ -175,7 +205,7 @@ public class Users {
 		result = prime * result + id;
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + phoneNumber;
+		result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
 		result = prime * result + ((role == null) ? 0 : role.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
@@ -219,7 +249,10 @@ public class Users {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
-		if (phoneNumber != other.phoneNumber)
+		if (phoneNumber == null) {
+			if (other.phoneNumber != null)
+				return false;
+		} else if (!phoneNumber.equals(other.phoneNumber))
 			return false;
 		if (role == null) {
 			if (other.role != null)
@@ -242,6 +275,9 @@ public class Users {
 				+ ", password=" + password + ", email=" + email + ", phoneNumber=" + phoneNumber + ", address="
 				+ address + ", role=" + role + "]";
 	}
+
+
+
 	
 	
 

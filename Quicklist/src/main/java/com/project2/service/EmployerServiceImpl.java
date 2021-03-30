@@ -19,7 +19,7 @@ import com.project2.repository.PostRepository;
 public class EmployerServiceImpl implements EmployerService
 {
 	@Autowired
-	private PostRepository postRepo;
+	public PostRepository postRepo;
 	
 	@Override
 	public boolean registerMyPost(Posts post)

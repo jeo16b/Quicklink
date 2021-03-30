@@ -16,7 +16,7 @@ public class UserServiceImpl implements UserService{
 	private Logger log = Logger.getLogger(UserServiceImpl.class);
 	
 	@Autowired
-	private UserRepository userRepository;
+	public UserRepository userRepository;
 	
 	public UserServiceImpl() {
 		log.trace("Injection using Autowired User Repository in UserServiceImpl");
